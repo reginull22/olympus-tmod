@@ -25,11 +25,17 @@ Items: {
 		DisplayName: Keraunite Bar
 		Tooltip: ""
 	}
+
+	VitrumSabre: {
+		Tooltip: ""
+		DisplayName: Vitrum Sabre
+	}
 }
 
 Projectiles: {
 	HomingStar.DisplayName: Homing Star
 	LeviathanProjectile.DisplayName: Leviathan Projectile
+	VitrumShard.DisplayName: Vitrum Shard
 }
 
 Tiles.KerauniteOre.MapEntry: Keraunite Ore
