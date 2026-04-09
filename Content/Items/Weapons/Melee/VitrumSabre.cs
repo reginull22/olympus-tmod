@@ -11,7 +11,7 @@ namespace olympus.Content.Items.Weapons.Melee
     {
         // The Display Name and Tooltip of this item can be edited in the Localization/en-US_Mods.regStarterBag.hjson file.
         public int hitCount = 0;
-        public int maxStacks = 6;
+        public int maxStacks = 10;
         public int weaponSpeed = 30;
         public override void SetDefaults()
         {
@@ -72,7 +72,7 @@ namespace olympus.Content.Items.Weapons.Melee
 
         public override float UseSpeedMultiplier(Player player)
         {
-            float bonus = 1f + (hitCount * 0.15f);
+            float bonus = 1f + (hitCount * 0.175f);
             return bonus;
         }
 
@@ -82,7 +82,8 @@ namespace olympus.Content.Items.Weapons.Melee
             { 
                 if (p.active && p.owner == player.whoAmI &&
                     (p.type == ModContent.ProjectileType<VitrumShard>() ||
-                    p.type == ModContent.ProjectileType<VitrumShardReturn>()))
+                    p.type == ModContent.ProjectileType<VitrumShardReturn>() ||
+                    p.type == ModContent.ProjectileType<VitrumExplosion>()))
                 {
                     return false;
                 }

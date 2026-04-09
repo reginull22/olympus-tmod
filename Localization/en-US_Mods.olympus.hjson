@@ -27,7 +27,11 @@ Items: {
 	}
 
 	VitrumSabre: {
-		Tooltip: ""
+		Tooltip:
+			'''
+			Sleek blade made of refined keraunite.
+			Hitting enemies builds up static electricity until the blade shatters then reforms into a static explosion
+			'''
 		DisplayName: Vitrum Sabre
 	}
 }
@@ -37,6 +41,7 @@ Projectiles: {
 	LeviathanProjectile.DisplayName: Leviathan Projectile
 	VitrumShard.DisplayName: Vitrum Shard
 	VitrumShardReturn.DisplayName: Vitrum Shard Return
+	VitrumExplosion.DisplayName: Vitrum Explosion
 }
 
 Tiles.KerauniteOre.MapEntry: Keraunite Ore
