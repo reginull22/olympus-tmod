@@ -1,0 +1,4 @@
+displayName = Olympus
+author = reginull
+version = 0.1
+modReferences = Luminance
