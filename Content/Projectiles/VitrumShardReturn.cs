@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace olympus.Content.Projectiles //where it's stored. Replace Mod with the name of your mod. This file is stored in the folder \Mod Sources\(mod name, folder can't have spaces)\Projectiles.
 {
-    public class VitrumShard : ModProjectile //the class of the projectile
+    public class VitrumShardReturn : ModProjectile //the class of the projectile
     {
         public override void SetDefaults()
         {
@@ -22,32 +22,20 @@ namespace olympus.Content.Projectiles //where it's stored. Replace Mod with the 
 
         public override void AI()
         {
-            Projectile.velocity *= 0.95f;
-            Projectile.ai[0]++;
-            if (Projectile.ai[0] >= 90)
+            Player player = Main.player[Projectile.owner];
+            Vector2 direction = player.Center - Projectile.Center;
+            direction.Normalize();
+            Projectile.velocity = direction * 18f;
+
+            if (Vector2.Distance(Projectile.Center, player.Center) < 20f)
             {
                 Projectile.Kill();
             }
-            
 
         }
-
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Projectile.damage = (int)(Projectile.damage * 0.6f);
-        }
-
-        public override void OnKill(int timeleft)
-        {
-            Projectile.NewProjectile(
-                Projectile.GetSource_Death(),
-                Projectile.Center,
-                Vector2.Zero,
-                ModContent.ProjectileType<VitrumShardReturn>(),
-                Projectile.damage,
-                Projectile.knockBack,
-                Projectile.owner
-            );
+            Projectile.damage = (int)(Projectile.damage * 0.4f);
         }
     }
 }

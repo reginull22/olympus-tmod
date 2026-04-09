@@ -36,6 +36,7 @@ Projectiles: {
 	HomingStar.DisplayName: Homing Star
 	LeviathanProjectile.DisplayName: Leviathan Projectile
 	VitrumShard.DisplayName: Vitrum Shard
+	VitrumShardReturn.DisplayName: Vitrum Shard Return
 }
 
 Tiles.KerauniteOre.MapEntry: Keraunite Ore

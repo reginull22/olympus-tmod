@@ -75,5 +75,19 @@ namespace olympus.Content.Items.Weapons.Melee
             float bonus = 1f + (hitCount * 0.15f);
             return bonus;
         }
+
+        public override bool CanUseItem(Player player)
+        {
+            foreach (Projectile p in Main.projectile)
+            { 
+                if (p.active && p.owner == player.whoAmI &&
+                    (p.type == ModContent.ProjectileType<VitrumShard>() ||
+                    p.type == ModContent.ProjectileType<VitrumShardReturn>()))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
