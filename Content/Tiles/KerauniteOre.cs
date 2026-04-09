@@ -9,7 +9,7 @@ using Terraria.WorldBuilding;
 
 namespace olympus.Content.Tiles
 {
-	public class StaticiumOre : ModTile
+	public class KerauniteOre : ModTile
 	{
 		public override void SetStaticDefaults() {
 			TileID.Sets.Ore[Type] = true;

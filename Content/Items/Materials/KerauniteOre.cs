@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace olympus.Content.Items.Materials
 {
-    public class StaticiumBar : ModItem
+    public class KerauniteOre : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -12,9 +12,10 @@ namespace olympus.Content.Items.Materials
         }
         public override void SetDefaults()
         {
-            Item.width = 30;
-            Item.height = 24;
-            Item.value = Item.sellPrice(0, 0, 50, 0);
+            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.KerauniteOre>());
+            Item.width = 16;
+            Item.height = 16;
+            Item.value = Item.sellPrice(0, 0, 10, 0);
         }
     }
 }

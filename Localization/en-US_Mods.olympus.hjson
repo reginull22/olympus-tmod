@@ -16,14 +16,14 @@ Items: {
 		Tooltip: ""
 	}
 
-	StaticiumOre: {
-		DisplayName: Staticium Ore
+	KerauniteOre: {
+		DisplayName: Keraunite Ore
 		Tooltip: ""
 	}
 
-	StaticiumBar: {
+	KerauniteBar: {
+		DisplayName: Keraunite Bar
 		Tooltip: ""
-		DisplayName: Staticium Bar
 	}
 }
 
@@ -32,4 +32,4 @@ Projectiles: {
 	LeviathanProjectile.DisplayName: Leviathan Projectile
 }
 
-Tiles.StaticiumOre.MapEntry: Staticium Ore
+Tiles.KerauniteOre.MapEntry: Keraunite Ore
