@@ -7,7 +7,6 @@ namespace olympus.Content.Items.Materials
 {
     public class StormFeather : ModItem
     {
-
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
@@ -19,6 +18,7 @@ namespace olympus.Content.Items.Materials
             Item.value = Item.sellPrice(0, 0, 75, 0);
             Item.width = 12;
             Item.height = 12;
+            Item.maxStack = 9999;
         }
     }
 }

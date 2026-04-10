@@ -16,6 +16,7 @@ namespace olympus.Content.Items.Materials
             Item.width = 16;
             Item.height = 16;
             Item.value = Item.sellPrice(0, 0, 10, 0);
+            Item.maxStack = 9999;
         }
     }
 }

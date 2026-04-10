@@ -34,6 +34,11 @@ Items: {
 			'''
 		DisplayName: Vitrum Sabre
 	}
+
+	VitrumRailgun: {
+		DisplayName: Vitrum Railgun
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -42,6 +47,9 @@ Projectiles: {
 	VitrumShard.DisplayName: Vitrum Shard
 	VitrumShardReturn.DisplayName: Vitrum Shard Return
 	VitrumExplosion.DisplayName: Vitrum Explosion
+	VitrumBullet.DisplayName: Vitrum Bullet
+	VitrumRailgunProjectile.DisplayName: Vitrum Railgun Projectile
+	VitrumLaser.DisplayName: Vitrum Laser
 }
 
 Tiles.KerauniteOre.MapEntry: Keraunite Ore
