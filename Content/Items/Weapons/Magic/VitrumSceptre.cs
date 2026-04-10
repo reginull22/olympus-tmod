@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using olympus.Content.Items.Materials;
 using olympus.Content.Projectiles;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -20,20 +22,21 @@ namespace olympus.Content.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.damage = 20;
+            Item.damage = 5;
             Item.DamageType = DamageClass.Magic;
             Item.width = 21;
             Item.height = 21;
-            Item.useTime = 20;
-            Item.useAnimation = 20;
+            Item.useTime = 10;
+            Item.useAnimation = 10;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
             Item.knockBack = 3;
             Item.value = 10000;
             Item.rare = 3;
-            Item.shoot = ModContent.ProjectileType<VitrumSceptreCone>();
-            Item.mana = 10;
-            Item.shootSpeed = 9f;
+            Item.shoot = ModContent.ProjectileType<VitrumSceptreRay>();
+            Item.mana = 7;
+            Item.shootSpeed = 6f;
+            Item.UseSound = SoundID.Item91;
         }
         public override void AddRecipes()
         {
@@ -41,6 +44,26 @@ namespace olympus.Content.Items.Weapons.Magic
                 .AddIngredient<KerauniteBar>(7)
                 .AddTile(TileID.Anvils)
                 .Register();
+        }
+        public List<int> hitEnemies = new List<int>();
+        public int rayCount = 8;
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            hitEnemies.Clear();
+            float angle = 0f;
+            float distance = 45f;
+            Vector2 modifiedVelocity = new Vector2();
+            if (type == ModContent.ProjectileType<VitrumSceptreRay>())
+            {
+                for(int i = 0; i < rayCount; i++)
+                {
+                    angle = -MathHelper.PiOver4 + (MathHelper.PiOver2 / (rayCount - 1)) * i;
+                    modifiedVelocity = velocity.RotatedBy(angle);
+                    Projectile.NewProjectile(player.GetSource_ItemUse(Item), player.Center + Vector2.Normalize(velocity) * distance, modifiedVelocity, ModContent.ProjectileType<VitrumSceptreRay>(), Item.damage, Item.knockBack, player.whoAmI);
+                }
+            }
+
+            return false;
         }
     }
 }

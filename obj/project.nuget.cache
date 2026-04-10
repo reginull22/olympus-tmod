@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LI7TWjbZekw=",
+  "dgSpecHash": "YoS0Q9zVo4U=",
   "success": true,
   "projectFilePath": "C:\\Users\\djred\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\olympus\\olympus.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\djred\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

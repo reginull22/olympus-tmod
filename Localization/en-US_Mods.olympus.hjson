@@ -74,7 +74,11 @@ Items: {
 
 	VitrumSceptre: {
 		DisplayName: Vitrum Sceptre
-		Tooltip: ""
+		Tooltip:
+			'''
+			Shoots a cone of static electricity stacking damage increase on enemies hit.
+			Resets after not hitting for a moment.
+			'''
 	}
 }
 
@@ -89,6 +93,7 @@ Projectiles: {
 	VitrumLaser.DisplayName: Vitrum Laser
 	VitrumArmorShard.DisplayName: Vitrum Armor Shard
 	VitrumSceptreCone.DisplayName: Vitrum Sceptre Cone
+	VitrumSceptreRay.DisplayName: Vitrum Sceptre Ray
 }
 
 Tiles.KerauniteOre.MapEntry: Keraunite Ore
