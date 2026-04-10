@@ -68,7 +68,7 @@ namespace olympus.Content.Items.Weapons.Ranged
             if (Main.mouseLeft)
             {
                 chargeTimer++;
-                if(chargeTimer%60 == 0)
+                if(chargeTimer >= 0 && chargeTimer%60 == 0)
                 {
                     if (chargeLevel < 5)
                     {

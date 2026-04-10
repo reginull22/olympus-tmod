@@ -18,7 +18,6 @@ namespace olympus.Content.Projectiles
         {
             Projectile.width = 8;
             Projectile.height = 28;
-            Projectile.friendly = true;
             Projectile.tileCollide = false;
             Projectile.penetrate = -1;
             Projectile.DamageType = DamageClass.Ranged;

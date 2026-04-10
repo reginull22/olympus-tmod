@@ -39,6 +39,43 @@ Items: {
 		DisplayName: Vitrum Railgun
 		Tooltip: ""
 	}
+
+	VitrumHeadgear: {
+		SetBonus:
+			'''
+			5% increased damage
+			Getting hit shoots out damaging vitrum shards, 15 second cooldown
+			'''
+		DisplayName: Vitrum Headgear
+		Tooltip:
+			'''
+			Increases maximum mana by 40
+			4% increased critical strike chance
+			'''
+	}
+
+	VitrumBreastplate: {
+		DisplayName: Vitrum Breastplate
+		Tooltip:
+			'''
+			Increases your max minions by 1
+			10% reduced mana costs
+			'''
+	}
+
+	VitrumGreaves: {
+		DisplayName: Vitrum Greaves
+		Tooltip:
+			'''
+			6% increased melee speed
+			10% increased movement speed
+			'''
+	}
+
+	VitrumSceptre: {
+		DisplayName: Vitrum Sceptre
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -50,6 +87,8 @@ Projectiles: {
 	VitrumBullet.DisplayName: Vitrum Bullet
 	VitrumRailgunProjectile.DisplayName: Vitrum Railgun Projectile
 	VitrumLaser.DisplayName: Vitrum Laser
+	VitrumArmorShard.DisplayName: Vitrum Armor Shard
+	VitrumSceptreCone.DisplayName: Vitrum Sceptre Cone
 }
 
 Tiles.KerauniteOre.MapEntry: Keraunite Ore
