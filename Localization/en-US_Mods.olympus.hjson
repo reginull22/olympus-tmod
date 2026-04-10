@@ -30,7 +30,7 @@ Items: {
 		Tooltip:
 			'''
 			Sleek blade made of refined keraunite.
-			Hitting enemies builds up static electricity until the blade shatters then reforms into a static explosion
+			Attacking builds up static electricity until the blade shatters then reforms into a static explosion
 			'''
 		DisplayName: Vitrum Sabre
 	}

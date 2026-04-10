@@ -39,9 +39,9 @@ namespace olympus.Content.Items.Weapons.Melee
         }
 
         // this fires every time the sword hits an enemy
-        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        //public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        public override bool? UseItem(Player player)
         {
-
             if (hitCount < maxStacks)
             {
                 hitCount++;
@@ -69,6 +69,7 @@ namespace olympus.Content.Items.Weapons.Melee
                 }
                 hitCount = 0;
             }
+            return true;
         } 
 
         public override float UseSpeedMultiplier(Player player)
