@@ -16,6 +16,7 @@ namespace olympus.Common.NPCs
 
         public int vitrumSceptreStacks = 0;
         public int vitrumSceptreDecayTimer = 60;
+        public int fulgurShardCooldown = 0;
 
         public override bool InstancePerEntity => true;
 
@@ -34,14 +35,20 @@ namespace olympus.Common.NPCs
                     SoundEngine.PlaySound(SoundID.Item94, npc.position);
                 }
             }
+
+            if (fulgurShardCooldown > 0)
+            {
+                fulgurShardCooldown--;
+            }
         }
 
         public override void OnHitByProjectile(NPC npc, Projectile projectile, NPC.HitInfo hit, int damageDone)
         {
-            if (projectile.minion == true && npc.HasBuff(ModContent.BuffType<FulgurChainDebuff>()))
+            if ((projectile.minion == true || ProjectileID.Sets.MinionShot[projectile.type]) && npc.HasBuff(ModContent.BuffType<FulgurChainDebuff>()) && fulgurShardCooldown == 0)
             {
                 Vector2 spawnPos = npc.Center + Main.rand.NextVector2Circular(20f, 20f);
-                Projectile.NewProjectile(projectile.GetSource_FromThis(), spawnPos, Vector2.Zero, ModContent.ProjectileType<VitrumArmorShard>(), (int)(projectile.damage * 0.65f), 0, projectile.owner);
+                Projectile.NewProjectile(projectile.GetSource_FromThis(), spawnPos, Vector2.Zero, ModContent.ProjectileType<VitrumArmorShard>(), (int)(projectile.damage + 17), 0, projectile.owner);
+                fulgurShardCooldown = 25;
             }
         }
     }

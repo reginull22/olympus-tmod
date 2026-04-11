@@ -16,7 +16,7 @@ namespace olympus.Content.Items.Weapons.Summoner
         {
             // This method quickly sets the whip's properties.
             // Mouse over to see its parameters.
-            Item.DefaultToWhip(ModContent.ProjectileType<FulgurChainProjectile>(), 20, 2, 4);
+            Item.DefaultToWhip(ModContent.ProjectileType<FulgurChainProjectile>(), 17, 2, 4);
             Item.rare = ItemRarityID.Green;
         }
 

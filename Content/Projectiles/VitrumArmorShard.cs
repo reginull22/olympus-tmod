@@ -31,5 +31,9 @@ namespace olympus.Content.Projectiles
             Projectile.velocity *= 0.80f;
         }
 
+        public override void OnKill(int timeLeft)
+        {
+            SoundEngine.PlaySound(SoundID.Shatter);
+        }
     }
 }
