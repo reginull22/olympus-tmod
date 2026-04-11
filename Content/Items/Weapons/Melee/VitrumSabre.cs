@@ -18,7 +18,7 @@ namespace olympus.Content.Items.Weapons.Melee
             Item.damage = 18;
             Item.DamageType = DamageClass.Melee;
             Item.width = 22;
-            Item.height = 32;
+            Item.height = 62;
             Item.useTime = 30;
             Item.useAnimation = 30;
             Item.useStyle = 1;
@@ -27,7 +27,6 @@ namespace olympus.Content.Items.Weapons.Melee
             Item.rare = 3;
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
-            Item.useTurn = true;
         }
 
         public override void AddRecipes()
@@ -42,6 +41,10 @@ namespace olympus.Content.Items.Weapons.Melee
         //public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         public override bool? UseItem(Player player)
         {
+            if (player.itemAnimation > 0)
+            {
+                player.ChangeDir(Main.MouseWorld.X > player.Center.X ? 1 : -1);
+            }
             if (hitCount < maxStacks)
             {
                 hitCount++;

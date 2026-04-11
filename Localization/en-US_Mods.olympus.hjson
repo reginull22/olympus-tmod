@@ -80,6 +80,11 @@ Items: {
 			Resets after not hitting for a moment.
 			'''
 	}
+
+	FulgurChain: {
+		DisplayName: Fulgur Chain
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -94,6 +99,14 @@ Projectiles: {
 	VitrumArmorShard.DisplayName: Vitrum Armor Shard
 	VitrumSceptreCone.DisplayName: Vitrum Sceptre Cone
 	VitrumSceptreRay.DisplayName: Vitrum Sceptre Ray
+	FulgurChainProjectile.DisplayName: Fulgur Chain Projectile
 }
 
 Tiles.KerauniteOre.MapEntry: Keraunite Ore
+
+Buffs: {
+	FulgurChainDebuff: {
+		DisplayName: Fulgur Chain Debuff
+		Description: Mods.olympus.Buffs.FulgurChainDebuff.Description
+	}
+}
