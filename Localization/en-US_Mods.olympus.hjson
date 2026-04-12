@@ -110,3 +110,5 @@ Buffs: {
 		Description: Mods.olympus.Buffs.FulgurChainDebuff.Description
 	}
 }
+
+NPCs.EvilSatyr.DisplayName: Evil Satyr
