@@ -1,9 +1,12 @@
 //using olympus.Content.Projectiles;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using Microsoft.Xna.Framework;
+using olympus.Content.Projectiles;
 
 /*TODO
  * 
@@ -23,16 +26,10 @@ namespace olympus.Content.NPCs
     public class EvilSatyr : ModNPC
     {
 
-        public int CurrentState
+        public float VineTimer
         {
-            get => (int)NPC.ai[0];
-            set => NPC.ai[0] = value;
-        }
-
-        public float Timer
-        {
-            get => NPC.ai[1];
-            set => NPC.ai[1] = value;
+            get => NPC.localAI[0];
+            set => NPC.localAI[0] = value;
         }
 
         public int Variant
@@ -43,13 +40,13 @@ namespace olympus.Content.NPCs
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[Type] = 13;
+            Main.npcFrameCount[Type] = 3;
         }
 
         public override void SetDefaults()
         {
-            NPC.width = 38;
-            NPC.height = 64;
+            NPC.width = 34;
+            NPC.height = 48;
             NPC.damage = 15;
             NPC.defense = 8;
             NPC.lifeMax = 400; //want it to be tankier as it would be a rare enemy (probably to be changed)
@@ -57,7 +54,9 @@ namespace olympus.Content.NPCs
             NPC.DeathSound = SoundID.NPCDeath1; //to be changed;
             NPC.value = 1300f; //rarer enemy, drops 1g3s so its worth
             NPC.knockBackResist = 0.5f; //will have to fiddle with this
-            NPC.aiStyle = -1; //For custom ai
+            NPC.aiStyle = NPCAIStyleID.Fighter; //For custom ai
+            AIType = NPCID.Zombie;
+            AnimationType = NPCID.Zombie;
 
             //Banner = ?; Don't have banner set up
             //BannerItem = ?; ^
@@ -77,74 +76,9 @@ namespace olympus.Content.NPCs
             return 0f;
         }
 
-        public override void FindFrame(int frameHeight)
-        {
-            int startFrame = 0;
-            int finalFrame = 0;
-            bool shouldLoop = false;
-
-            switch (CurrentState)
-            {
-                case 0:
-                    startFrame = 0;
-                    finalFrame = 5;
-                    shouldLoop = true;
-                    break;
-                case 1:
-                    startFrame = 6;
-                    finalFrame = 8;
-                    break;
-                case 2:
-                    startFrame = 0;
-                    finalFrame = 5;
-                    shouldLoop = true;
-                    break;
-                case 3:
-                    startFrame = 9;
-                    finalFrame = 12;
-                    break;
-            }
-
-            if (NPC.frame.Y < startFrame * frameHeight || NPC.frame.Y > finalFrame * frameHeight)
-            {
-                NPC.frame.Y = startFrame * frameHeight;
-            }
-
-            int frameSpeed = 10;
-            NPC.frameCounter++;
-            if (NPC.frameCounter > frameSpeed)
-            {
-                NPC.frameCounter = 0;
-                NPC.frame.Y += frameHeight;
-                if (shouldLoop)
-                {
-                    if (NPC.frame.Y > finalFrame * frameHeight)
-                    {
-                        NPC.frame.Y = startFrame * frameHeight;
-                    }
-                }
-                else
-                {
-                    if (NPC.frame.Y > finalFrame * frameHeight)
-                    {
-                        NPC.frame.Y = finalFrame * frameHeight;
-                    }
-                }
-            }
-        }
-
         public override void AI()
         {
-            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
-            {
-                NPC.TargetClosest();
-            }
-
             Player player = Main.player[NPC.target];
-            float distance = NPC.Distance(player.Center);
-            NPC.direction = NPC.Center.X < player.Center.X ? 1 : -1;
-
-            Main.NewText($"State: {CurrentState}, Distance: {distance}");
 
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
@@ -154,86 +88,22 @@ namespace olympus.Content.NPCs
                         Variant = 1;
                     else if ((player.ZoneForest && WorldGen.crimson) || player.ZoneCrimson)
                         Variant = 2;
+                    else if (player.ZoneHallow)
+                        Variant = 3;
                     else
                         Variant = WorldGen.crimson ? 2 : 1;
 
                     NPC.netUpdate = true;
                 }
             }
-            if (distance < 64f)
-            {
-                CurrentState = 3;
-            }
-            else if (CurrentState != 3 && CurrentState != 1)
-            {
-                if (distance < 170f)
-                    CurrentState = 2;
-                else if (distance < 250f)
-                    CurrentState = 1;
-                else
-                    CurrentState = 0;
-            }
 
-            switch (CurrentState)
-            {
-                case 0: DoWalk(player); break;
-                case 1: DoRangedAttack(player); break;
-                case 2: DoWalkAway(player); break;
-                case 3: DoStomp(player); break;
-            }
-        }
+            VineTimer--;
 
-        private void DoWalk(Player player)
-        {
-            NPC.velocity.X = NPC.direction * 2f;
-            if (NPC.collideX && NPC.velocity.Y == 0)
+            if (VineTimer <= 0 && Math.Abs(NPC.velocity.X) > 0.5f && NPC.collideY)
             {
-                NPC.velocity.Y = -6f;
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Bottom - new Vector2(0, 8), Vector2.Zero, ModContent.ProjectileType<SatyrVine>(), 10, 0, Main.myPlayer);
+                VineTimer = 30;
             }
-        }
-        private void DoWalkAway(Player player)
-        {
-            NPC.velocity.X = -NPC.direction * 2f;
-            if (NPC.collideX && NPC.velocity.Y == 0)
-            {
-                NPC.velocity.Y = -6f;
-            }
-        }
-
-        private void DoStomp(Player player)
-        {
-            NPC.velocity.X = 0f;
-            if(Timer >= 60)
-            {
-                Timer = 0;
-                CurrentState = 2;
-            }
-            else if (Timer == 45)
-            {
-                //spawn shockwave
-            }
-            Timer++;
-        }
-
-        private void DoRangedAttack(Player player)
-        {
-            NPC.velocity.X = 0f;
-            if (Timer > 120) { Timer = 29; }
-
-            if (Timer > 29 && (Timer - 30) % 15 == 0)
-            {
-                int shotNumber = (int)((Timer - 30) / 15);
-                if (shotNumber % 2 == 0)
-                {
-                    //shoot cos
-                }
-                else
-                {
-                    //shoot sin
-                }
-                   
-            }
-            Timer++;
         }
     }
 }

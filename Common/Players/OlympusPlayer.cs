@@ -13,6 +13,7 @@ namespace olympus.Common.Players
 
         public bool isVitrumSet = false;
         public int shatterCooldown = 0;
+        public int vineCooldown = 0;
 
 
         public override void ResetEffects()
@@ -21,6 +22,10 @@ namespace olympus.Common.Players
             if (shatterCooldown > 0)
             {
                 shatterCooldown--;
+            }
+            if (vineCooldown > 0)
+            {
+                vineCooldown--;
             }
         }
 
