@@ -85,6 +85,16 @@ Items: {
 		DisplayName: Fulgur Chain
 		Tooltip: ""
 	}
+
+	PanAnimus: {
+		Tooltip: ""
+		DisplayName: Pan Animus
+	}
+
+	PanAnimusAlt: {
+		Tooltip: ""
+		DisplayName: Pan Animus Alt
+	}
 }
 
 Projectiles: {
