@@ -1,12 +1,14 @@
 //using olympus.Content.Projectiles;
+using Microsoft.Xna.Framework;
+using olympus.Content.Items.Materials;
+using olympus.Content.Projectiles;
 using System;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
-using Microsoft.Xna.Framework;
-using olympus.Content.Projectiles;
 
 /*TODO
  * 
@@ -74,6 +76,11 @@ namespace olympus.Content.NPCs
             }
 
             return 0f;
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SatyrFur>(), 1, 1, 2));
         }
 
         public override void AI()

@@ -95,6 +95,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Pan Animus Alt
 	}
+
+	BoarTusk: {
+		DisplayName: Boar Tusk
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -125,4 +130,5 @@ Buffs: {
 NPCs: {
 	EvilSatyr.DisplayName: Evil Satyr
 	Pandaemonium.DisplayName: Pandaemonium
+	WildBoar.DisplayName: Wild Boar
 }
